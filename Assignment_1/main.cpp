@@ -1,5 +1,6 @@
 /* © ALL RIGHTS RESERVED BY VEDANT DHADGE*/
 
+
 /* you are given an interger array a of size n, sorted in non decreasin order,you are also given an interger target, you rtask is to write a func to search for
 target in the array a if it exists, if yes then return its index. Use the concept of linear search and write program in cpp*/
 
