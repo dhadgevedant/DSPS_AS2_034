@@ -1,8 +1,6 @@
-/*
+	/*
 		TO DO LIST:
-		
-			1. add something to control new line during complex number printing
-			2. subtraction is wrong because it is innitially getting subtracted from 0
+
 */
 
 #include<iostream>
@@ -10,9 +8,8 @@
 #include<stdio.h>
 using namespace std;
 
-
-
 class Complex{
+	
 
 	public:
 		
@@ -47,9 +44,15 @@ class Complex{
 
 		}
 		
-		void operator<<(Complex const &obj){
-		
+		void operator<<(Complex obj){
+			
+			if(obj.imag>=0)
 			cout<<obj.real<<" + i"<<obj.imag;
+			
+			else{
+				obj.imag*=-1;
+				cout<<obj.real<<" - i"<<obj.imag;
+			}
 		}
 		
 		void operator>>(Complex &obj){
@@ -64,6 +67,7 @@ class Complex{
 			
 			real = 0;
 			imag = 0;
+
 		}
 		
 		Complex(double real, double imag){
@@ -72,36 +76,15 @@ class Complex{
 			this->imag = imag;
 			
 		}
-
-
+	
+	
 }print,input,opr;
 
 
 int main(){
 	
-	/*
-	Complex a(2,5), b(3,5),d(4,5);
+	//main_loop:
 	
-	cout<<"a = ";
-		print<<a; cout<<endl;
-		
-	cout<<"b = ";
-		print<<b; cout<<endl;
-	cout<<"d = ";
-		print<<d;	cout<<endl;	
-	
-	Complex c = a+b+d;
-	
-	cout<<"a + b + d = ";
-		print << c; cout<<endl;
-	
-	c = d-a;
-	cout<<"d - a = ";
-	print<<c;	cout<<endl;
-	*/
-	bool flag = 1;
-	
-	do{
 		cout<<"Main Menue\n\n\t1. Add Complex numbers\n\t2. Subtract Complex numbers\n\nEnter your choice: ";
 		int ch; cin>>ch;
 		
@@ -122,6 +105,8 @@ int main(){
 					
 					result  = result + arr[i];
 				}
+			
+			//PRINTING OUTPUT
 				
 				for(int i = 0; i<n-1;i++){
 
@@ -129,11 +114,11 @@ int main(){
 					opr<<arr[i];
 					cout<<") + ";
 				}
-				cout<<"(";
-				opr<<arr[n-1];
-				cout<<") = ";
-				
-				opr<<result;
+					cout<<"(";
+					opr<<arr[n-1];
+					cout<<") = ";
+					
+					opr<<result;
 												
 				break;
 			}
@@ -146,7 +131,12 @@ int main(){
 				int n;	cin>>n;
 				
 				Complex arr[n];
-				for(int i = 0; i<n;i++){
+				cout<<1<<". Enter real and imaginary part : ";
+				opr>>arr[0];
+				
+				result = arr[0];
+					
+				for(int i = 1; i<n;i++){
 					
 					cout<<i+1<<". Enter real and imaginary part : ";
 					opr>>arr[i];
@@ -154,28 +144,38 @@ int main(){
 					result  = result - arr[i];
 				}
 				
+				
+			//PRINTING OUTPUT
+							
 				for(int i = 0; i<n-1;i++){
 
 					cout<<"(";
 					opr<<arr[i];
 					cout<<") - ";
 				}
-				cout<<"(";
-				opr<<arr[n-1];
-				cout<<") = ";
-				
-				opr<<result;
+					
+					cout<<"(";
+					opr<<arr[n-1];
+					cout<<") = ";
+					
+					opr<<result;
 												
 				break;
 			}
 
 		}
 		
-		cout<<"\n\nDo you want to continue: ";
-		cin>>flag;
-	}while(flag);
-	
-	
-	return 0;
-	
+		char yn;
+
+		user_ch: //user_ch GOTO JUMP point
+			
+			cout<<"\n\nDo you want to continue(y/n): ";
+			cin>>yn;
+				
+			if(yn == 'y'||yn == 'Y')main();
+			else if(yn == 'n'||yn == 'N')return 0;
+		else goto user_ch;//JUMP TO user_ch
+			
 }
+
+
